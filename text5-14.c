@@ -45,9 +45,15 @@ int main(int argc,char *argv[])
                     if((nlines=readlines(lineptr,MAXLINES))>=0)
                     {
                         if(isin)
+                        {
+                            qsort(lineptr,0,nlines-1);
                             rwritelines(lineptr,nlines-n,nlines);
+                        }
                         else
+                        {
+                            qsort(lineptr,0,nlines-1);
                             rwritelines(lineptr,0,nlines);
+                        }
                         return 0;
                     }else{
                         printf("error:input too big to sort\n");
@@ -60,9 +66,15 @@ int main(int argc,char *argv[])
     if((nlines=readlines(lineptr,MAXLINES))>=0)
     {
         if(isin)
+        {
+            qsort(lineptr,0,nlines-1);
             writelines(lineptr,0,n);    
+        }
         else
+        {
+            qsort(lineptr,0,nlines-1);
             writelines(lineptr,0,nlines);
+        }
         return 0;
     }else{
         printf("error:input too big to sort\n");
@@ -135,7 +147,7 @@ void rwritelines(char *lineptr[],int flines,int llines)
     }
 }
 
-/*void qsort(char *v[],int left,int right)
+void qsort(char *v[],int left,int right)
 {
     int i,last;
     void swap(char *v[],int i,int j);
@@ -158,4 +170,4 @@ void swap(char *v[],int i,int j)
     temp=v[i];
     v[i]=v[j];
     v[j]=temp;
-}*/
+}
