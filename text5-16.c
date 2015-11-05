@@ -35,7 +35,6 @@ int main(int argc,char *argv[])
     int result;
     if(argc>1&&strcmp(argv[1],"-d")==0)
     {
-        printf("-d\n");
         if(nlines>=0)
         {
             //不加这个只输入一行且有标点时无法报错
@@ -58,7 +57,6 @@ int main(int argc,char *argv[])
     }
     if(argc>1&&strcmp(argv[1],"-f")==0)
     {
-        printf("-f\n");
         if(nlines>=0)
         {
             maopao(lineptr,nlines,(int (*)(void *,void *))mystrcmp);
@@ -68,7 +66,6 @@ int main(int argc,char *argv[])
     } 
     if(argc==3||(argc==2&&(strcmp(argv[1],"-df")==0||strcmp(argv[1],"-fd")==0)))
     {
-        printf("-df\n");
         int i;
         for(i=0;i<nlines;i++)
         {
