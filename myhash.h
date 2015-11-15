@@ -17,6 +17,7 @@ typedef Position List;
 typedef HashTbl *HashTable;
 
 HashTable InitializeTable(int TableSize);
+int Delete(int Key,HashTable H);
 void DestroyTable(HashTable H);
 Position Find(int Key,HashTable H);
 void Insert(int Key,HashTable H);

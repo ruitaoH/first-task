@@ -61,16 +61,15 @@ int main(void){
                 printf("\nEnter a number:\n");
                 scanf("%d",&item);
                 Insert(item,H);
-                //printHash(item,H);
                 break;
             case 2:
-                DestroyTable(H);
+                printf("\nEnter a number to delete\n");
+                scanf("%d",&item);
+                Delete(item,H);
                 break;
             case 3:
-                //printf("\nEnter a Key to see:\n");
-                //scanf("%d",&item);
-                //printHash(item,H);
                 printTable(H);
+                break;
             default:
                 printf("\nInvaild choice\n\n");
                 instructions();
@@ -89,7 +88,7 @@ int main(void){
 void instructions(void){
     printf("Enter your choice:\n"
         "1 to insert an element into Hash\n"
-        "2 to destory hashtable\n"
+        "2 to delete an element\n"
         "3 to see list from Hash\n" 
         "4 to end\n");
 }
@@ -187,16 +186,40 @@ void DestroyTable(HashTable H){
     free(H);
 }
 
-void printHash(int Key,HashTable H){
-    Position P = H->TheList[Hash(Key,H->TableSize)]->nextPtr;
+/*Delete*/
+int Delete(int Key,HashTable H){
+    Position P,temp;
 
-    while(P != NULL){
-        printf("%d -->",P->data);
+    if((temp = Find(Key,H)) == NULL){
+        printf("Can't find\n");
+        return 0;
+    }
+
+    P = H->TheList[Hash(Key,H->TableSize)]->nextPtr;
+
+    if(P->data == Key){
+        H->TheList[Hash(Key,H->TableSize)]->nextPtr = P->nextPtr;
+        free(P);
+        return Key;
+    }
+
+    if(P->nextPtr == NULL){
+        H->TheList[Hash(Key,H->TableSize)]->nextPtr = NULL;
+        free(P);
+        return Key;
+    }
+
+    while(P != NULL && P->nextPtr->data != Key){
         P = P->nextPtr;
     }
-    printf("NULL\n");
+
+    P->nextPtr = temp->nextPtr;
+    free(temp);
+
+    return Key;
 }
 
+/*printTable*/
 void printTable(HashTable H){
     int i;
     Position P;
@@ -211,3 +234,5 @@ void printTable(HashTable H){
         printf("NULL\n");
     }
 }
+
+
